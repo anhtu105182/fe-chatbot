@@ -40,7 +40,7 @@ async function loginUser(username, password) {
         // Save token to localStorage
         localStorage.setItem('token', data.token);
         // Handle successful login (e.g., redirect to home page)
-        window.location.href = '/my-web-app/src/home.html';
+        window.location.href = '/src/home.html';
     } catch (error) {
         alert(error.message);
     }

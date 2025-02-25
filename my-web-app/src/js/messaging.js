@@ -1,30 +1,50 @@
-// This file contains JavaScript for the messaging page, including functionality for sending and receiving messages.
+document.addEventListener("DOMContentLoaded", function () {
+    const messageForm = document.getElementById("messageForm");
+    const messageInput = document.getElementById("messageInput");
+    const messagesContainer = document.querySelector(".messages");
 
-document.addEventListener('DOMContentLoaded', function() {
-    const messageForm = document.getElementById('messageForm');
-    const messageInput = document.getElementById('messageInput');
-    const messagesContainer = document.getElementById('messagesContainer');
+    async function sendMessage(message) {
+        try {
+            const response = await fetch("http://localhost:5000/api/chat/chatgemini", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ message })
+            });
 
-    messageForm.addEventListener('submit', function(event) {
+            const data = await response.json();
+            const rawText = data.reply.parts[0].text;
+            return formatMessage(rawText);
+        } catch (error) {
+            console.error("Error sending message:", error);
+            return "Error: Unable to fetch response";
+        }
+    }
+
+    function formatMessage(text) {
+        return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+            .replace(/\*/g, "<br>-");
+    }
+
+    function appendMessage(text, sender) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message", sender);
+        messageElement.innerHTML = text;
+        messagesContainer.appendChild(messageElement);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    messageForm.addEventListener("submit", async function (event) {
         event.preventDefault();
-        sendMessage(messageInput.value);
-        messageInput.value = '';
+
+        const message = messageInput.value.trim();
+        if (!message) return;
+
+        appendMessage(message, "user");
+        messageInput.value = "";
+
+        const responseText = await sendMessage(message);
+        appendMessage(responseText, "bot");
     });
-
-    function sendMessage(message) {
-        // Here you would typically send the message to the server via an API call
-        // For demonstration, we will just append it to the messages container
-        const messageElement = document.createElement('div');
-        messageElement.textContent = message;
-        messagesContainer.appendChild(messageElement);
-        
-        // Simulate receiving a response
-        receiveMessage(`Echo: ${message}`);
-    }
-
-    function receiveMessage(message) {
-        const messageElement = document.createElement('div');
-        messageElement.textContent = message;
-        messagesContainer.appendChild(messageElement);
-    }
 });
