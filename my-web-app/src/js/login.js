@@ -39,6 +39,7 @@ async function loginUser(username, password) {
         const data = await response.json();
         // Save token to localStorage
         localStorage.setItem('token', data.token);
+        localStorage.setItem("user_id", data.user_id); // 🆕 Lưu user_id
         // Handle successful login (e.g., redirect to home page)
         window.location.href = '/src/home.html';
     } catch (error) {

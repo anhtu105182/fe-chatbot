@@ -1,50 +1,29 @@
-// // home.js
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     // Load user-specific data and display it on the home page
-//     loadUserData();
-
-//     // Set up event listeners for any interactive elements
-//     setupEventListeners();
-// });
-
-// function loadUserData() {
-//     // Fetch user data from the API and update the UI accordingly
-//     fetch('/api/user/data')
-//         .then(response => response.json())
-//         .then(data => {
-//             // Update the UI with user data
-//             document.getElementById('user-name').textContent = data.name;
-//             document.getElementById('user-email').textContent = data.email;
-//             // Additional UI updates can be done here
-//         })
-//         .catch(error => {
-//             console.error('Error fetching user data:', error);
-//         });
-// }
-
-// function setupEventListeners() {
-//     // Example: Set up a button click event
-//     document.getElementById('logout-button').addEventListener('click', function() {
-//         logoutUser();
-//     });
-// }
-
-// function logoutUser() {
-//     // Call the API to log out the user
-//     fetch('/api/auth/logout', {
-//         method: 'POST',
-//         credentials: 'include'
-//     })
-//     .then(response => {
-//         if (response.ok) {
-//             // Redirect to login page after successful logout
-//             window.location.href = 'login.html';
-//         } else {
-//             console.error('Logout failed');
-//         }
-//     })
-//     .catch(error => {
-//         console.error('Error during logout:', error);
-//     });
-// }
+document.getElementById("startChat").addEventListener("click", async function(event) {
+    event.preventDefault();
+    const token = localStorage.getItem("token");
+    if (!token) {
+        alert("Bạn cần đăng nhập trước khi trò chuyện!");
+        return;
+    }
+    try {
+        const response = await fetch("http://localhost:5000/api/chat/create-chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ dept_id: 1 })
+        });
+        const data = await response.json();
+        if (data.message === "Đã có cuộc trò chuyện") {
+            // window.location.href = `message.html?chat_id=${data.chat_id}`;
+            window.location.href = "messaging.html";
+        } else {
+            alert("Cuộc trò chuyện mới đã được tạo!");
+            window.location.href = "messaging.html";
+        }
+    } catch (error) {
+        console.error("Lỗi khi kết nối API:", error);
+        alert("Đã xảy ra lỗi. Vui lòng thử lại sau!");
+    }
+});

@@ -1,59 +1,57 @@
-# My Web App
+# Ứng Dụng Web Của Tôi
 
-## Overview
-This project is a web application that provides user authentication, a home dashboard, and a messaging feature. It includes separate pages for login, registration, home, and messaging, each with its own functionality and styling.
+## Tổng Quan
+Dự án này là một ứng dụng web cung cấp chức năng xác thực người dùng, trang tổng quan và hệ thống nhắn tin. Nó bao gồm các trang riêng biệt cho đăng nhập, đăng ký, trang chủ và nhắn tin, mỗi trang có chức năng và phong cách riêng.
 
-## Features
-- User authentication (login and registration)
-- Home dashboard for user interactions
-- Messaging system for sending and receiving messages
+## Tính Năng
+- Xác thực người dùng (đăng nhập và đăng ký)
+- Trang tổng quan cho tương tác của người dùng
+- Hệ thống nhắn tin để gửi và nhận tin nhắn
 
-## Project Structure
+## Cấu Trúc Dự Án
 ```
 my-web-app
 ├── src
 │   ├── api
-│   │   └── auth.js          # API functions for authentication
+│   │   └── auth.js          # Các hàm API cho xác thực
 │   ├── css
-│   │   ├── login.css        # Styles for the login page
-│   │   ├── register.css     # Styles for the registration page
-│   │   ├── home.css         # Styles for the home page
-│   │   └── messaging.css     # Styles for the messaging page
+│   │   ├── login.css        # CSS cho trang đăng nhập
+│   │   ├── register.css     # CSS cho trang đăng ký
+│   │   ├── home.css         # CSS cho trang chủ
+│   │   └── messaging.css    # CSS cho trang nhắn tin
 │   ├── js
-│   │   ├── login.js         # JavaScript for login functionality
-│   │   ├── register.js      # JavaScript for registration functionality
-│   │   ├── home.js          # JavaScript for home page interactions
-│   │   └── messaging.js      # JavaScript for messaging functionality
-│   ├── login.html           # Login page
-│   ├── register.html        # Registration page
-│   ├── home.html            # Home page
-│   └── messaging.html       # Messaging page
-├── index.html               # Main entry point for the application
-└── README.md                # Project documentation
+│   │   ├── login.js         # JavaScript cho chức năng đăng nhập
+│   │   ├── register.js      # JavaScript cho chức năng đăng ký
+│   │   ├── home.js          # JavaScript cho tương tác trang chủ
+│   │   └── messaging.js     # JavaScript cho chức năng nhắn tin
+│   ├── login.html           # Trang đăng nhập
+│   ├── register.html        # Trang đăng ký
+│   ├── home.html            # Trang chủ
+│   └── messaging.html       # Trang nhắn tin
+├── index.html               # Điểm truy cập chính của ứng dụng
+└── README.md                # Tài liệu hướng dẫn dự án
 ```
 
-## Setup Instructions
-1. Clone the repository:
-   ```
+## Hướng Dẫn Cài Đặt
+1. Clone kho lưu trữ:
+   ```sh
    git clone <repository-url>
    ```
-2. Navigate to the project directory:
-   ```
+2. Di chuyển vào thư mục dự án:
+   ```sh
    cd my-web-app
    ```
-3. Open `index.html` in your web browser to view the application.
+3. Mở `index.html` trên trình duyệt web để sử dụng ứng dụng.
 
-## Usage
-- Navigate to the login page to authenticate users.
-- Use the registration page to create a new account.
-- Access the home page for user-specific content.
-- Go to the messaging page to send and receive messages.
+## Hướng Dẫn Sử Dụng
+- Truy cập trang đăng nhập để xác thực người dùng.
+- Sử dụng trang đăng ký để tạo tài khoản mới.
+- Vào trang chủ để xem nội dung cá nhân.
+- Mở trang nhắn tin để gửi và nhận tin nhắn.
 
-## Technologies Used
+## Công Nghệ Sử Dụng
 - HTML
 - CSS
 - JavaScript
-- API for authentication
+- API xác thực
 
-## Contributing
-Feel free to submit issues or pull requests for improvements or bug fixes.

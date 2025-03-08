@@ -75,23 +75,32 @@ button:hover {
     margin-bottom: 20px;
 }
 
-.message {
-    padding: 10px 15px;
-    border-radius: 15px;
-    max-width: 80%;
-    word-wrap: break-word;
+
+.messages {
+    font-family: Arial, sans-serif;
     font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.message {
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    max-width: 70%;
+    word-wrap: break-word;
 }
 
 .user {
-    align-self: flex-end;
-    background-color: #2bff00;
+    background-color: #208e0a;
     color: white;
+    align-self: flex-end;
+    text-align: left;
 }
 
 .bot {
-    align-self: flex-start;
-    background-color: #e5e5e5;
+    background-color: #f1f1f1;
     color: black;
+    align-self: flex-start;
     text-align: left;
 }
