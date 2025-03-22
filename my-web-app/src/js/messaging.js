@@ -56,7 +56,16 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Bạn cần đăng nhập trước khi trò chuyện!");
             return;
         }
+
+        console.log("Thêm hiệu ứng typing...");
+        const typingIndicator = document.createElement("div");
+        typingIndicator.classList.add("message", "bot", "typing-indicator");
+        typingIndicator.innerHTML = "ChatBot đang trả lời <span></span><span></span><span></span>";
+        messagesContainer.appendChild(typingIndicator);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
         try {
+            console.log("Gửi tin nhắn đến API...");
             const response = await fetch("http://localhost:5000/api/chat/chatgemini", {
                 method: "POST",
                 headers: {
@@ -67,9 +76,12 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             const data = await response.json();
+
+            typingIndicator.remove(); // Xóa hiệu ứng khi có phản hồi
             return formatMessage(data.reply || "Không nhận được phản hồi từ bot.");
         } catch (error) {
             console.error("Lỗi khi gửi tin nhắn:", error);
+            typingIndicator.remove(); // Xóa hiệu ứng nếu có lỗi
             return "Lỗi: Không thể kết nối đến máy chủ.";
         }
     }
